@@ -125,32 +125,47 @@ def convert(text, key)
 
     # convert the single letters inside the array to numbers; a = 1, b = 2 etc.
     text.each_with_index do |value, index|
-        text[index] = convert_letter_to_number(value)
+
+        # only convert to number if the letter is in the alphabet, no special characters or numbers
+        if text[index].match?(/[A-Za-z]/)
+            text[index] = convert_letter_to_number(value)
+        end
+
     end
 
     # convert the numbers inside the array to the given cipher key
     text.each_with_index do |value, index|
 
-        # calculate the new value; if the key is 3: z = 26 + 3 = 29
-        new_value = value + key.to_i
+        # only convert if the value is an integer, no special characters
+        if text[index].class == Integer
 
-        # if the value is above 26, start at 1 respectively the letter a
-        # 29 => 29 - 26 = 3 => letter: c
-        # else just return the new value
-        if new_value > 26
-            text[index] = new_value - 26
-        else
-            text[index] = new_value
+            # calculate the new value; if the key is 3: z = 26 + 3 = 29
+            new_value = value + key.to_i
+
+            # if the value is above 26, start at 1 respectively the letter a
+            # 29 => 29 - 26 = 3 => letter: c
+            # else just return the new value
+            if new_value > 26
+                text[index] = new_value - 26
+            else
+                text[index] = new_value
+            end
+
         end
 
     end
 
     # convert the single numbers inside the array to letters; 1 = a, 2 = b etc.
     text.each_with_index do |value, index|
-        text[index] = convert_number_to_text(value)
+
+        # only convert if the value is an integer, no special characters
+        if text[index].class == Integer
+            text[index] = convert_number_to_text(value)
+        end
+
     end
 
-    puts text
+    puts text.join("")
 
 end
 
