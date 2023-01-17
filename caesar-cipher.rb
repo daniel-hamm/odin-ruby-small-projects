@@ -120,6 +120,9 @@ end
 
 def convert(text, key)
 
+    # downcase everything
+    text = text.downcase
+
     # split the string to an array
     text = text.split("")
 
