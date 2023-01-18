@@ -12,6 +12,7 @@ def remove_special_characters(word)
     end
 
     word = word.join("")
+
     word = word.split(" ")
 
 end
@@ -58,54 +59,72 @@ def split_into_letters(word)
     # inner loop counter
     i = 0
 
-    # outer loop counter
+    # middle loop counter
     k = 0
 
-    # we create two nested loops
+    # outer looper counter
+    l = 0
+
+    # we create three nested loops
 
     # outer loop
+    # depends of how many words are in the given word sentence array
+
+    # middle loop
     # 1: adjusts how many rounds the inner loop makes
     # 2: adjusts the length of the sub strings
 
     # the inner loop creates the sub strings and adds them to an array
 
     # example word: "below"
-    # the amount of outer loop rounds is the words length => 0 to 4 = 5
+    # the amount of middle loop rounds is the words length => 0 to 4 = 5
 
     # round 1 (one letter strings): "b", "e", "l", "o", "w" => inner loop rounds: 5 - 0 = 5
-    # "b" = word[0...0], "e" = word[1...1], "l" = word[2...2], "o" = word[3...3], "w" = word[4...4]
+    # "b" = word[0][0...0], "e" = word[0][1...1], "l" = word[0][2...2], "o" = word[0][3...3], "w" = word[0][4...4]
 
     # round 2 (two letter strings): "be", "el", "lo", "ow" => inner loop rounds: 5 - 1 = 4
-    # "be" = word[0...1], "el" = word[1...2], "lo" = word[2...3], "ow" = word[3...4]
+    # "be" = word[0][0...1], "el" = word[0][1...2], "lo" = word[0][2...3], "ow" = word[0][3...4]
 
     # round 3 (three letter strings): "bel", "elo", "low" => inner loop rounds: 5 - 2 = 3
-    # "bel" = word[0...2], "elo" = word[1...3], "low" = word[2...4]
+    # "bel" = word[0][0...2], "elo" = word[0][1...3], "low" = word[0][2...4]
 
     # round 4 (four letter strings): "belo", "elow" => inner loop rounds: 5 - 3 = 2
-    # "belo" = word[0...3], "elow" = word[1...4]
+    # "belo" = word[0][0...3], "elow" = word[0][1...4]
 
     # round 5 (four letter strings): "below" => inner loop rounds: 5 - 4 = 1
-    # "below" = word[0...4]
+    # "below" = word[0][0...4]
+
 
     # outer loop
-    while k < word.length
+    while l < word.length
 
-        # inner loop
-        while i < (word.length - k) do
-            
-            # add the sub strings to the results array
-            result[result.length] = word[i..i+k]
-            
-            # increment the inner loops counter
-            i += 1
+        # middle loop
+        while k < word[l].length
+
+            # inner loop
+            while i < (word[l].length - k) do
+                
+                # add the sub strings to the results array
+                result[result.length] = word[l][i..i+k]
+                
+                # increment the inner loops counter
+                i += 1
+
+            end
+
+            # set the inner loops counter to 0, so it can start again when incrementing the middle loop
+            i = 0
+
+            # increment the middle loops counter
+            k += 1
 
         end
 
-        # set the inner loops counter to 0
-        i = 0
+        # set the middle loops counter to 0, so it can start again when incrementing the outer loop
+        k = 0
 
         # increment the outer loops counter
-        k += 1
+        l += 1
 
     end
 
@@ -133,7 +152,7 @@ def substrings(word, dictionary)
 end
 
 # create the word we want to search substrings from
-word = "Below"
+word = ["Below", "Hello"]
 
 # create the dictionay where we want to search for substrings
 dictionary = ["below","down","below","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
