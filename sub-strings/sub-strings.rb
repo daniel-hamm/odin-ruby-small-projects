@@ -11,7 +11,8 @@ def remove_special_characters(word)
         i += 1
     end
 
-    word.join("")
+    word = word.join("")
+    word = word.split(" ")
 
 end
 
@@ -42,7 +43,7 @@ def dictionary_check(word, dictionary)
     end
 
     # return the result
-    p result
+    result
 
 end
 
