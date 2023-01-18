@@ -29,8 +29,8 @@ def dictionary_check(word, dictionary)
         # loop through each word of the dictionary array
         dictionary.each do |word|
             
-            # if a word inside the dictionary array matches the value
-            if word == value
+            # if a word inside the dictionary array matches the value; make it case insensitive
+            if word.downcase == value.downcase
 
                 # push the result inside the result array
                 result[word] += 1
@@ -132,7 +132,7 @@ def substrings(word, dictionary)
 end
 
 # create the word we want to search substrings from
-word = "below"
+word = "Below"
 
 # create the dictionay where we want to search for substrings
 dictionary = ["below","down","below","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
