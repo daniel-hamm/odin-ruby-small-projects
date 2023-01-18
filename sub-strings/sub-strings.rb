@@ -3,7 +3,7 @@
 def dictionary_check(word, dictionary)
 
     # create a new array to push the matching results to
-    result = Array.new
+    result = Hash.new(0)
 
     # loop through each value of the given word array
     word.each do |value|
@@ -15,7 +15,7 @@ def dictionary_check(word, dictionary)
             if word == value
 
                 # push the result inside the result array
-                result.push(word)
+                result[word] += 1
 
             end
 
@@ -24,7 +24,7 @@ def dictionary_check(word, dictionary)
     end
 
     # return the result
-    result
+    p result
 
 end
 
@@ -98,7 +98,7 @@ end
 def substrings(word, dictionary)
 
     # create a new array for the results
-    result = Array.new
+    result = Hash.new
 
     # call the first check
     #result = result.push(dictionary_check(split_into_single_letters(word), dictionary))
@@ -117,6 +117,6 @@ end
 word = "below"
 
 # create the dictionay where we want to search for substrings
-dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+dictionary = ["below","down","below","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
 p substrings(word, dictionary)
