@@ -1,18 +1,32 @@
+# method to remove special characters from a string
 def remove_special_characters(word)
 
+    # loop counter
     i = 0
 
+    # split the sentence into a single letter array
     word = word.split("")
 
+    # loop through the array
     while i < word.length do
+
+        # check if a given letter / string does not match the regex A-Z, a-z and space
         if !word[i].match?(/[A-Za-z ]/)
+
+            # if the letter / string does not match the regex, remove it
             word.delete_at(i)
+
         end
+
+        # increment loop counter
         i += 1
+
     end
 
+    # join the array to a string again
     word = word.join("")
 
+    # split the string back to an array, because we don't want spaces, just single words
     word = word.split(" ")
 
 end
