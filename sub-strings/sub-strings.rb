@@ -117,6 +117,6 @@ end
 word = "below"
 
 # create the dictionay where we want to search for substrings
-dictionary = ["below","b","ow","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
 p substrings(word, dictionary)
