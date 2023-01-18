@@ -47,22 +47,60 @@ def split_into_letters(word)
     # create a new array for the results
     result = Array.new
 
-    # loop counter
+    # inner loop counter
     i = 0
-    k = 1   # start value = 1
 
-    # create 
+    # outer loop counter
+    k = 0
+
+    # we create two nested loops
+
+    # outer loop
+    # 1: adjusts how many rounds the inner loop makes
+    # 2: adjusts the length of the sub strings
+
+    # the inner loop creates the sub strings and adds them to an array
+
+    # example word: "below"
+    # the amount of outer loop rounds is the words length => 0 to 4 = 5
+
+    # round 1 (one letter strings): "b", "e", "l", "o", "w" => inner loop rounds: 5 - 0 = 5
+    # "b" = word[0...0], "e" = word[1...1], "l" = word[2...2], "o" = word[3...3], "w" = word[4...4]
+
+    # round 2 (two letter strings): "be", "el", "lo", "ow" => inner loop rounds: 5 - 1 = 4
+    # "be" = word[0...1], "el" = word[1...2], "lo" = word[2...3], "ow" = word[3...4]
+
+    # round 3 (three letter strings): "bel", "elo", "low" => inner loop rounds: 5 - 2 = 3
+    # "bel" = word[0...2], "elo" = word[1...3], "low" = word[2...4]
+
+    # round 4 (four letter strings): "belo", "elow" => inner loop rounds: 5 - 3 = 2
+    # "belo" = word[0...3], "elow" = word[1...4]
+
+    # round 5 (four letter strings): "below" => inner loop rounds: 5 - 4 = 1
+    # "below" = word[0...4]
+
+    # outer loop
     while k < word.length
-        while i < (word.length + 1 - k) do
+
+        # inner loop
+        while i < (word.length - k) do
             
-            result[result.length] = word[i...i+k]
+            # add the sub strings to the results array
+            result[result.length] = word[i..i+k]
             
+            # increment the inner loops counter
             i += 1
 
         end
+
+        # set the inner loops counter to 0
         i = 0
+
+        # increment the outer loops counter
         k += 1
+
     end
+
     # return the result
     result
 
