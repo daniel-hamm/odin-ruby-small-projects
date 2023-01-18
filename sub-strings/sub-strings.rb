@@ -1,25 +1,21 @@
-def substrings(word, dictionary)
+# method for the dictionary check
+# word is the given word array. can be single letters, a two letter array etc.
+def dictionary_check(word, dictionary)
 
+    # create a new array to push the matching results to
     result = Array.new
-    single_letter_array = Array.new
-    two_letter_array = Array.new
-    i = 0
 
-    ### first check
-    # split the word into single letters for the first check
-    single_letter_array = word.split("")
+    # loop through each value of the given word array
+    word.each do |value|
 
-    # check for single letters inside the dictionary that match the given word
-    single_letter_array.each do |letter|
-
-        # loop through the dictionary array
-        dictionary.each do |single_letter_array|
+        # loop through each word of the dictionary array
+        dictionary.each do |word|
             
-            # if a word inside the dictionary array matches a single letter
-            if single_letter_array == letter
+            # if a word inside the dictionary array matches the value
+            if word == value
 
                 # push the result inside the result array
-                result.push(single_letter_array)
+                result.push(word)
 
             end
 
@@ -27,29 +23,69 @@ def substrings(word, dictionary)
 
     end
 
-    ### second check
-    # split the word into two letter strings for the second check
+    # return the result
+    result
+
+end
+
+# method to split the given word into a single letter array
+def split_into_single_letters(word)
+
+    # split the string into a single letter array
+    word = word.split("")
+
+    # return the single letter array
+    word
+
+end
+
+# method to split the given word into a two letter array
+# example: word = "below"; result[0] = "be"; result[1] = "el"; result[2] = "lo"; result[3] = "ow"
+# result = ["be", "el", "lo", "ow"]
+def split_into_two_letters(word)
+
+    # create a new array for the results
+    result = Array.new
+
+    # loop counter
+    i = 0
 
     # loop through the word. one time less than the length of the word
-    while i < (single_letter_array.length - 1) do
+    while i < (word.length - 1) do
 
         # add two letters from the word array to a pair to create two letter strings inside a buffer array
-        two_letter_array[i] = single_letter_array[i] + single_letter_array[i + 1]
+        result[i] = word[i] + word[i + 1]
 
         # increment the loop counter
         i += 1
 
     end
+    
+    # return the result
+    result
 
-    print single_letter_array
-    puts
-    print two_letter_array
-    puts
+end
 
+def substrings(word, dictionary)
+
+    # create a new array for the results
+    result = Array.new
+
+    # call the first check
+    result = result.push(dictionary_check(split_into_single_letters(word), dictionary))
+
+    # call the second check
+    result = result.push(dictionary_check(split_into_two_letters(word), dictionary))
+
+    # return the results
     result
     
 end
 
-dictionary = ["below","b","be","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+# create the word we want to search substrings from
+word = "below"
 
-print substrings("below", dictionary)
+# create the dictionay where we want to search for substrings
+dictionary = ["below","b","ow","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+
+p substrings(word, dictionary)
