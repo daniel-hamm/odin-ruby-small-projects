@@ -144,7 +144,7 @@ def substrings(word, dictionary)
     # call the second check
     #result = result.push(dictionary_check(split_into_two_letters(word), dictionary))
 
-    result = dictionary_check(split_into_letters(word), dictionary)
+    result = dictionary_check(split_into_letters(remove_special_characters(word)), dictionary)
 
     # return the results
     result
@@ -152,11 +152,9 @@ def substrings(word, dictionary)
 end
 
 # create the word we want to search substrings from
-word = ["Below", "Hello"]
+word = "Howdy partner, sit down! How's it going?"
 
 # create the dictionay where we want to search for substrings
-dictionary = ["below","down","below","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
 p substrings(word, dictionary)
-
-p remove_special_characters("Howdy partner, sit down! How's it going?")
