@@ -1,3 +1,21 @@
+def remove_special_characters(word)
+
+    i = 0
+
+    word = word.split("")
+
+    while i < word.length do
+        if !word[i].match?(/[A-Za-z ]/)
+            word.delete_at(i)
+        end
+        i += 1
+    end
+
+    word.join("")
+
+end
+
+
 # method for the dictionary check
 # word is the given word array. can be single letters, a two letter array etc.
 def dictionary_check(word, dictionary)
@@ -120,3 +138,5 @@ word = "below"
 dictionary = ["below","down","below","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
 p substrings(word, dictionary)
+
+p remove_special_characters("Howdy partner, sit down! How's it going?")
