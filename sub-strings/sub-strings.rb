@@ -42,25 +42,27 @@ end
 # method to split the given word into a two letter array
 # example: word = "below"; result[0] = "be"; result[1] = "el"; result[2] = "lo"; result[3] = "ow"
 # result = ["be", "el", "lo", "ow"]
-def split_into_two_letters(word)
+def split_into_letters(word)
 
     # create a new array for the results
     result = Array.new
 
     # loop counter
     i = 0
+    k = 1   # start value = 1
 
-    # loop through the word. one time less than the length of the word
-    while i < (word.length - 1) do
+    # create 
+    while k < word.length
+        while i < (word.length + 1 - k) do
+            
+            result[result.length] = word[i...i+k]
+            
+            i += 1
 
-        # add two letters from the word array to a pair to create two letter strings inside a buffer array
-        result[i] = word[i] + word[i + 1]
-
-        # increment the loop counter
-        i += 1
-
+        end
+        i = 0
+        k += 1
     end
-    
     # return the result
     result
 
@@ -72,10 +74,12 @@ def substrings(word, dictionary)
     result = Array.new
 
     # call the first check
-    result = result.push(dictionary_check(split_into_single_letters(word), dictionary))
+    #result = result.push(dictionary_check(split_into_single_letters(word), dictionary))
 
     # call the second check
-    result = result.push(dictionary_check(split_into_two_letters(word), dictionary))
+    #result = result.push(dictionary_check(split_into_two_letters(word), dictionary))
+
+    result = split_into_letters(word)
 
     # return the results
     result
